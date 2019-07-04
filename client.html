@@ -1,1 +1,30 @@
-
+<html>
+  <button id="get">get post</button>
+  <br><br>
+  <button id="post">create post</button>
+<script>
+let getButton=document.getElementById("get");
+let createButton=document.getElementById("post");
+getButton.addEventListener('click',()=>{
+  fetch('http://localhost:8080/feed/get')
+    .then(res=>res.json())
+    .then(resData=>console.log(resData))
+    .catch(err=>console.log(err));
+});
+createButton.addEventListener("click",()=>{
+  fetch('http://localhost:8080/feed/post',{
+    method:'POST',
+    body:JSON.stringify({
+    title:"Gajjar Darshit HasmukhBhai",
+    content:"cismox owner"
+  }),
+    headers:{
+      'Content-Type':'application/json'
+    }
+  })
+    .then(res=>res.json())
+    .then(resData=>console.log(resData))
+    .catch(err=>console.log(err));
+});  
+</script>
+</html>
